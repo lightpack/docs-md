@@ -23,6 +23,36 @@ The `up()` method contains definition for required schema changes. Any reverse o
 
 > In short: `up()` is the **do** part of a migration; `down()` is the **undo**.</p>
 
+## Reserved Table Names
+
+Lightpack uses certain table names internally for framework features (jobs queue, cache, settings, etc.). These names are reserved — avoid using them for your own application tables.
+
+| Table | Used by |
+|-------|---------|
+| `users` | Auth |
+| `access_tokens` | Auth |
+| `jobs` | Queue |
+| `cache` | Cache |
+| `settings` | Settings |
+| `secrets` | Secrets |
+| `audit_logs` | Audit |
+| `cable_messages` | Cable |
+| `cable_presence` | Cable |
+| `roles` | RBAC |
+| `permissions` | RBAC |
+| `user_role` | RBAC |
+| `role_permission` | RBAC |
+| `tags` | Tags |
+| `tag_morphs` | Tags |
+| `taxonomies` | Taxonomies |
+| `taxonomy_morphs` | Taxonomies |
+| `uploads` | Uploads |
+| `social_accounts` | Social Auth |
+| `webhook_events` | Webhooks |
+| `migrations` | Migrations |
+
+If your application requires a table name that conflicts with a reserved name, use a domain-specific name instead. For example, name your job listings table `job_postings` instead of `jobs`. If you already have a conflicting table, create a rename migration to rename your domain table before generating the framework table.
+
 ## Running Migrations
 
 To run your migration files:
